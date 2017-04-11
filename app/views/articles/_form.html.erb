@@ -1,0 +1,25 @@
+  <%= form_for(@article) do |f| %>
+    <%= f.label :title %>:
+    <%= f.text_field :title %></br>
+    <%= f.label :content %>:
+    <%= f.text_field :content %>
+    <div class="markdown-content">
+      <div id="editor"></div>
+    </div>
+    <br>
+    <%= f.submit %>
+  <% end %>
+
+
+
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    var textarea = $('#article_content').hide();
+    editor.getSession().setValue(textarea.val());
+    editor.getSession().on('change', function(){
+      textarea.val(editor.getSession().getValue());
+    });
+  </script>
+
+
